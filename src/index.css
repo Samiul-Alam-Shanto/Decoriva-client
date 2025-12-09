@@ -1,0 +1,140 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Outfit", sans-serif;
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-in: fadeIn 1s ease-out;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* LIGHT MODE*/
+@plugin "daisyui/theme" {
+  name: "luxury-light";
+  default: true;
+  color-scheme: light;
+
+  /* PRIMARY: Jet Black (Authority) */
+  --color-primary: oklch(20% 0 0);
+  --color-primary-content: oklch(100% 0 0); /* White Text */
+
+  /* SECONDARY: Champagne Gold (Luxury) */
+  --color-secondary: oklch(76% 0.14 85);
+  --color-secondary-content: oklch(20% 0 0); /* Black Text */
+
+  /* ACCENT: Warm Stone */
+  --color-accent: oklch(55% 0.05 40);
+  --color-accent-content: oklch(98% 0 0);
+
+  /* BACKGROUND LAYERS (Warm Alabaster) */
+  --color-base-100: oklch(99% 0.005 85); /* Page BG */
+  --color-base-200: oklch(96% 0.01 85); /* Cards */
+  --color-base-300: oklch(92% 0.01 85); /* Borders/Inputs */
+
+  /* CONTENT (Jet Black) */
+  --color-base-content: oklch(20% 0 0); /* Main Text */
+
+  --radius-selector: 2rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+}
+
+/* DARK MODE: "The Midnight Gala" */
+@plugin "daisyui/theme" {
+  name: "luxury-dark";
+  prefersdark: true;
+  color-scheme: dark;
+
+  /* PRIMARY: Gold (Beacon in the dark) */
+  /* We flip Primary to Gold in dark mode for visibility/luxury */
+  --color-primary: oklch(78% 0.15 80);
+  --color-primary-content: oklch(15% 0 0); /* Black Text on Gold */
+
+  /* SECONDARY: Soft White (Subtle) */
+  --color-secondary: oklch(90% 0 0);
+  --color-secondary-content: oklch(10% 0 0);
+
+  /* BACKGROUND LAYERS (Obsidian / Deep Charcoal) */
+  /* Not 0% lightness (Pitch Black), but 15% (Rich Dark Gray) */
+  --color-base-100: oklch(15% 0 0);
+  --color-base-200: oklch(20% 0 0); /* Slightly lighter for cards */
+  --color-base-300: oklch(25% 0 0);
+
+  /* CONTENT (Pearl Gray) */
+  --color-base-content: oklch(92% 0.01 85); /* Readable on dark */
+}
+
+/* 3. GLOBAL POLISH */
+body {
+  font-family: var(--font-sans);
+  /* Smooth transition for theme toggle */
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 4. LUXURY TEXTURE (Grain) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03; /* Subtle grain */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 5. TYPOGRAPHY */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* 6. UTILITY CLASSES */
+
+/* Glass Panel */
+.glass-panel {
+  background: color-mix(in srgb, var(--color-base-100), transparent 30%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid
+    color-mix(in srgb, var(--color-base-content), transparent 90%);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
