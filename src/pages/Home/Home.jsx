@@ -3,6 +3,10 @@ import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import HowItWorks from "./components/HowItWorks";
 import FeaturedServices from "./components/FeaturedServices";
+import TopDecorators from "./components/TopDecorators";
+import Testimonials from "./components/Testimonials";
+import Subscription from "./components/Subscription";
+import ServiceMap from "./components/ServiceMap";
 
 const Home = () => {
   useEffect(() => {
@@ -15,6 +19,10 @@ const Home = () => {
       <FeaturedServices />
       <Stats />
       <HowItWorks />
+      <TopDecorators />
+      <Testimonials />
+      <Subscription />
+      <ServiceMap />
     </div>
   );
 };
