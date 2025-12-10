@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import HowItWorks from "./components/HowItWorks";
+import FeaturedServices from "./components/FeaturedServices";
 
 const Home = () => {
   useEffect(() => {
@@ -11,6 +12,7 @@ const Home = () => {
   return (
     <div className="overflow-x-hidden">
       <Hero />
+      <FeaturedServices />
       <Stats />
       <HowItWorks />
     </div>
