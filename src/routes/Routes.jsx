@@ -12,6 +12,8 @@ import ForgotPassword from "../pages/Auth/ForgotPassword";
 import PrivateRoute from "./PrivateRoute";
 import BookingForm from "../pages/Booking/BookingForm";
 import PaymentSuccess from "../pages/Booking/PaymentSuccess";
+import Cart from "../pages/Cart/Cart";
+import BeADecor from "../pages/BeADecor/BeADecor";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +58,15 @@ export const router = createBrowserRouter([
       {
         path: "payment/success",
         element: <PaymentSuccess />,
+      },
+      { path: "cart", element: <Cart /> },
+      {
+        path: "be-a-decor",
+        element: (
+          <PrivateRoute>
+            <BeADecor />
+          </PrivateRoute>
+        ),
       },
     ],
   },
