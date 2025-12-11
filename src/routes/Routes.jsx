@@ -9,6 +9,9 @@ import ServiceDetails from "../pages/Services/ServiceDetails";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
+import PrivateRoute from "./PrivateRoute";
+import BookingForm from "../pages/Booking/BookingForm";
+import PaymentSuccess from "../pages/Booking/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +29,18 @@ export const router = createBrowserRouter([
       { path: "gallery", element: <Gallery /> },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
-      { path: "services/:id", element: <ServiceDetails /> },
+      {
+        path: "services/:id",
+        element: <ServiceDetails />,
+      },
+      {
+        path: "book/:id",
+        element: (
+          <PrivateRoute>
+            <BookingForm />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "login",
         element: <Login />,
@@ -38,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "payment/success",
+        element: <PaymentSuccess />,
       },
     ],
   },

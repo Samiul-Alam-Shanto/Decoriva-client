@@ -1,5 +1,5 @@
 import { use, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -15,6 +15,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${
 
 const Register = () => {
   const { createUser, updateUserProfile } = use(AuthContext);
+  const location = useLocation();
+  const from = location.state || "/";
 
   const {
     register,
@@ -58,7 +60,7 @@ const Register = () => {
 
         if (dbResponse.data.insertedId || dbResponse.data.message) {
           toast.success("Welcome to Decoriva!", { id: toastId });
-          navigate("/");
+          navigate(from);
         }
       }
     } catch (error) {

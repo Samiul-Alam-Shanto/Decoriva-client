@@ -13,7 +13,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state || "/";
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Login = () => {
     signIn(data.email, data.password)
       .then(() => {
         toast.success("Welcome back!", { id: toastId });
-        navigate(from, { replace: true });
+        navigate(from);
       })
       .catch((error) => {
         const msg = getErrorMessage(error.code);
