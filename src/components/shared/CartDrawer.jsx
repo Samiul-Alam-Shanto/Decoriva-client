@@ -5,11 +5,9 @@ import { FaTimes, FaTrash, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router";
 
 const CartDrawer = () => {
-  // Access global cart state
   const { cart, removeFromCart, cartTotal, isCartOpen, setIsCartOpen } =
     useCart();
 
-  // Close on overlay click
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       setIsCartOpen(false);
@@ -20,24 +18,21 @@ const CartDrawer = () => {
     <AnimatePresence>
       {isCartOpen && (
         <>
-          {/* 1. BACKDROP OVERLAY */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleOverlayClick}
-            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-100 bg-black/40 backdrop-blur-sm"
           />
 
-          {/* 2. SLIDE-IN DRAWER */}
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 z-[101] h-full w-full max-w-md bg-base-100 shadow-2xl border-l border-base-content/5 flex flex-col"
+            className="fixed top-0 right-0 z-101 h-full w-full max-w-md bg-base-100 shadow-2xl border-l border-base-content/5 flex flex-col"
           >
-            {/* HEADER */}
             <div className="p-6 border-b border-base-content/5 flex justify-between items-center bg-base-100/80 backdrop-blur-xl sticky top-0 z-10">
               <div>
                 <h2 className="text-2xl font-serif font-bold">
@@ -55,7 +50,6 @@ const CartDrawer = () => {
               </button>
             </div>
 
-            {/* BODY (SCROLLABLE) */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               {cart.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center opacity-50">
@@ -117,7 +111,6 @@ const CartDrawer = () => {
               )}
             </div>
 
-            {/* FOOTER (FIXED) */}
             {cart.length > 0 && (
               <div className="p-6 border-t border-base-content/5 bg-base-100 z-10">
                 <div className="flex justify-between items-end mb-4">
@@ -129,7 +122,7 @@ const CartDrawer = () => {
                   </span>
                 </div>
                 <Link
-                  to="/cart" // Or checkout directly if we had a multi-item checkout
+                  to="/cart"
                   onClick={() => setIsCartOpen(false)}
                   className="btn btn-primary w-full rounded-full text-lg shadow-lg hover:shadow-primary/30 text-white"
                 >

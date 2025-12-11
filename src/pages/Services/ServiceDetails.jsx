@@ -4,10 +4,12 @@ import axios from "axios";
 import { FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import LoadingSpinner from "../../components/shared/LoadingSpinner";
+import useCart from "../../hooks/useCart";
 
 const ServiceDetails = () => {
   const { id } = useParams();
   const [service, setService] = useState(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -117,7 +119,10 @@ const ServiceDetails = () => {
 
             {/* BUTTONS  */}
             <div className="flex flex-col gap-3 mb-4">
-              <button className="btn btn-primary flex-1 rounded-full text-lg shadow-lg hover:shadow-primary/50 hover:-translate-y-1 transition-all">
+              <button
+                onClick={() => addToCart(service)}
+                className="btn btn-primary flex-1 rounded-full text-lg shadow-lg hover:shadow-primary/50 hover:-translate-y-1 transition-all"
+              >
                 Add to Cart
               </button>
 

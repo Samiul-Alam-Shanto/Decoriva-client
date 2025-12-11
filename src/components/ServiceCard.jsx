@@ -51,7 +51,6 @@ const ServiceCard = ({ service }) => {
               <span className="text-xl font-serif font-bold text-base-content">
                 ${cost.toLocaleString()}
               </span>
-              {/* <span className="text-xs text-base-content/50 font-sans">/ event</span> */}
             </div>
           </div>
 
