@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { router } from "./routes/Routes";
 import { RouterProvider } from "react-router";
 import AuthProvider from "./providers/AuthProvider";
+import CartProvider from "./providers/CartProvider";
 
 const queryClient = new QueryClient();
 
@@ -13,8 +14,10 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <Toaster position="top-center" reverseOrder={false} />
+        <CartProvider>
+          <RouterProvider router={router} />
+          <Toaster position="top-center" reverseOrder={false} />
+        </CartProvider>
       </QueryClientProvider>
     </AuthProvider>
   </StrictMode>

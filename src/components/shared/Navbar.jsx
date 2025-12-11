@@ -8,20 +8,24 @@ import {
   FaTimes,
   FaSignOutAlt,
   FaThLarge,
+  FaShoppingCart,
+  FaShoppingBag,
 } from "react-icons/fa";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthContext } from "../../providers/AuthProvider";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
+  const { cart, toggleCart } = useCart();
+
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "luxury-light"
   );
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Theme Logic
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
@@ -32,17 +36,14 @@ const Navbar = () => {
       prev === "luxury-light" ? "luxury-dark" : "luxury-light"
     );
 
-  // Scroll Logic
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   const handleMenu = () => setMobileMenuOpen(false);
 
-  // --- NAVIGATION LINKS  ---
   const baseLinks = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -113,6 +114,17 @@ const Navbar = () => {
           {/* DESKTOP ACTIONS */}
           <div className="hidden lg:flex items-center gap-3">
             <button
+              onClick={toggleCart} // Triggers Drawer
+              className=" relative cursor-pointer text-base-content hover:text-primary"
+            >
+              <FaShoppingCart size={25} />
+              {cart.length > 0 && (
+                <span className="badge badge-xs badge-secondary absolute -top-1 -right-2 ">
+                  {cart.length}
+                </span>
+              )}
+            </button>
+            <button
               onClick={toggleTheme}
               className="btn btn-circle btn-sm btn-ghost text-base-content/70 hover:text-primary transition-colors"
             >
@@ -167,6 +179,14 @@ const Navbar = () => {
 
           {/* MOBILE TOGGLE BUTTON */}
           <div className="flex gap-4 items-center lg:hidden">
+            <button onClick={toggleCart} className="relative">
+              <FaShoppingCart size={25} />
+              {cart.length > 0 && (
+                <span className="badge badge-xs badge-secondary absolute -top-1 -right-2">
+                  {cart.length}
+                </span>
+              )}
+            </button>
             <button
               onClick={toggleTheme}
               className="btn btn-circle btn-xs btn-ghost"
@@ -187,6 +207,24 @@ const Navbar = () => {
           </div>
         </div>
       </motion.nav>
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <button
+            onClick={() => {
+              handleMenu();
+              toggleCart();
+            }}
+            className="p-3 rounded-xl text-lg font-medium hover:bg-base-200 flex justify-between items-center w-full"
+          >
+            <span className="flex items-center gap-2">
+              <FaShoppingBag /> My Cart
+            </span>
+            {cart.length > 0 && (
+              <span className="badge badge-secondary">{cart.length}</span>
+            )}
+          </button>
+        )}
+      </AnimatePresence>
 
       {/* MOBILE DROPDOWN MENU */}
       <AnimatePresence>
@@ -271,6 +309,18 @@ const Navbar = () => {
                     </span>
                   </Link>
                 )}
+                <Link
+                  to="/cart"
+                  onClick={handleMenu}
+                  className="p-3 rounded-xl text-lg font-medium hover:bg-base-200 flex justify-between items-center"
+                >
+                  <span className="flex items-center gap-2">
+                    <FaShoppingBag /> My Cart
+                  </span>
+                  {cart.length > 0 && (
+                    <span className="badge badge-secondary">{cart.length}</span>
+                  )}
+                </Link>
               </div>
             </div>
           </motion.div>
