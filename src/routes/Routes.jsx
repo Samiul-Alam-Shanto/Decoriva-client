@@ -19,11 +19,13 @@ import DashboardEntry from "../pages/Dashboard/DashboardEntry";
 import MyBookings from "../pages/Dashboard/User/MyBookings";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
 import UserProfile from "../pages/Dashboard/User/UserProfile";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -79,6 +81,7 @@ export const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

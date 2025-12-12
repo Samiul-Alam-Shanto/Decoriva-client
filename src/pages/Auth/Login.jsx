@@ -25,7 +25,7 @@ const Login = () => {
     signIn(data.email, data.password)
       .then(() => {
         toast.success("Welcome back!", { id: toastId });
-        navigate(from);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const msg = getErrorMessage(error.code);

@@ -1,21 +1,23 @@
 import { use } from "react";
 import { Navigate, useLocation } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
+import useRole from "../hooks/useRole";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 
-const PrivateRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
   const { user, loading } = use(AuthContext);
+  const [role, isRoleLoading] = useRole();
   const location = useLocation();
 
-  if (loading) {
+  if (loading || isRoleLoading) {
     return <LoadingSpinner />;
   }
 
-  if (user) {
+  if (user && role === "admin") {
     return children;
   }
 
-  return <Navigate state={location.pathname} replace to="/login" />;
+  return <Navigate to="/" state={location.pathname} replace></Navigate>;
 };
 
-export default PrivateRoute;
+export default AdminRoute;

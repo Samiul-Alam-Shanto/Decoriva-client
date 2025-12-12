@@ -60,7 +60,7 @@ const Register = () => {
 
         if (dbResponse.data.insertedId || dbResponse.data.message) {
           toast.success("Welcome to Decoriva!", { id: toastId });
-          navigate(from);
+          navigate(from, { replace: true });
         }
       }
     } catch (error) {
