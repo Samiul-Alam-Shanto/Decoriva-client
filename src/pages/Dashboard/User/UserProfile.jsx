@@ -81,7 +81,7 @@ const UserProfile = () => {
                 <input
                   type="text"
                   {...register("name")}
-                  className="input input-bordered w-full bg-base-200 focus:bg-base-100 focus:border-primary transition-all"
+                  className="input input-bordered w-full bg-base-200/50 focus:bg-base-100 focus:border-primary transition-all"
                 />
               </div>
 
@@ -90,11 +90,11 @@ const UserProfile = () => {
                   Avatar URL
                 </label>
                 <div className="relative">
-                  <FaCamera className="absolute left-3 top-3.5 text-base-content/30" />
+                  <FaCamera className="absolute  left-3 top-3.5 text-base-content/30" />
                   <input
                     type="text"
                     {...register("photoURL")}
-                    className="input input-bordered w-full pl-10 bg-base-200 focus:bg-base-100 focus:border-primary transition-all"
+                    className="input input-bordered w-full pl-10 bg-base-200/50 focus:bg-base-100 focus:border-primary transition-all"
                   />
                 </div>
               </div>

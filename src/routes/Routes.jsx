@@ -22,6 +22,7 @@ import UserProfile from "../pages/Dashboard/User/UserProfile";
 import ErrorPage from "../pages/ErrorPage";
 import DecoratorRoute from "./DecoratorRoute";
 import DecoratorHome from "../pages/Dashboard/Decorator/DecoratorHome";
+import MyProjects from "../pages/Dashboard/Decorator/MyProjects";
 
 export const router = createBrowserRouter([
   {
@@ -112,6 +113,14 @@ export const router = createBrowserRouter([
         element: (
           <DecoratorRoute>
             <DecoratorHome />
+          </DecoratorRoute>
+        ),
+      },
+      {
+        path: "my-projects",
+        element: (
+          <DecoratorRoute>
+            <MyProjects />
           </DecoratorRoute>
         ),
       },

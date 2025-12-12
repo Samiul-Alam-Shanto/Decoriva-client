@@ -1,6 +1,6 @@
+import React from "react";
 import { use } from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { AuthContext } from "../../../providers/AuthProvider";
 import {
   FaClipboardList,
