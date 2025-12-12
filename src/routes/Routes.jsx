@@ -15,6 +15,10 @@ import PaymentSuccess from "../pages/Booking/PaymentSuccess";
 import Cart from "../pages/Cart/Cart";
 import BeADecor from "../pages/BeADecor/BeADecor";
 import DashboardLayout from "../layouts/DashboardLayout";
+import DashboardEntry from "../pages/Dashboard/DashboardEntry";
+import MyBookings from "../pages/Dashboard/User/MyBookings";
+import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
+import UserProfile from "../pages/Dashboard/User/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -77,9 +81,23 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <DashboardEntry />,
+      },
+      // user paths
+      {
+        path: "my-bookings",
+        element: <MyBookings />,
+      },
+      {
         path: "payment/success",
         element: <PaymentSuccess />,
       },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
+      },
+      { path: "profile", element: <UserProfile /> },
     ],
   },
 ]);
