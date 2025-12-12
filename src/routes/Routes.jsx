@@ -14,6 +14,7 @@ import BookingForm from "../pages/Booking/BookingForm";
 import PaymentSuccess from "../pages/Booking/PaymentSuccess";
 import Cart from "../pages/Cart/Cart";
 import BeADecor from "../pages/BeADecor/BeADecor";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -55,10 +56,7 @@ export const router = createBrowserRouter([
         path: "forgot-password",
         element: <ForgotPassword />,
       },
-      {
-        path: "payment/success",
-        element: <PaymentSuccess />,
-      },
+
       { path: "cart", element: <Cart /> },
       {
         path: "be-a-decor",
@@ -67,6 +65,20 @@ export const router = createBrowserRouter([
             <BeADecor />
           </PrivateRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "payment/success",
+        element: <PaymentSuccess />,
       },
     ],
   },
