@@ -20,6 +20,8 @@ import MyBookings from "../pages/Dashboard/User/MyBookings";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
 import UserProfile from "../pages/Dashboard/User/UserProfile";
 import ErrorPage from "../pages/ErrorPage";
+import DecoratorRoute from "./DecoratorRoute";
+import DecoratorHome from "../pages/Dashboard/Decorator/DecoratorHome";
 
 export const router = createBrowserRouter([
   {
@@ -101,6 +103,18 @@ export const router = createBrowserRouter([
         element: <PaymentHistory />,
       },
       { path: "profile", element: <UserProfile /> },
+
+      //decorator paths
+
+      {
+        path: "decorator-home",
+
+        element: (
+          <DecoratorRoute>
+            <DecoratorHome />
+          </DecoratorRoute>
+        ),
+      },
     ],
   },
 ]);
