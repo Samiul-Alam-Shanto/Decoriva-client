@@ -28,6 +28,7 @@ import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import AddService from "../pages/Dashboard/Admin/AddService";
 import ManageServices from "../pages/Dashboard/Admin/ManageServices";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import ManageBookings from "../pages/Dashboard/Admin/ManageBookings";
 
 export const router = createBrowserRouter([
   {
@@ -161,6 +162,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-bookings",
+        element: (
+          <AdminRoute>
+            <ManageBookings />
           </AdminRoute>
         ),
       },
