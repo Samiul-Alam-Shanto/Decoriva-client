@@ -27,6 +27,7 @@ import AdminRoute from "./AdminRoute";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import AddService from "../pages/Dashboard/Admin/AddService";
 import ManageServices from "../pages/Dashboard/Admin/ManageServices";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -152,6 +153,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageServices />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
           </AdminRoute>
         ),
       },
