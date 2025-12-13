@@ -3,7 +3,15 @@ import axios from "axios";
 import ServiceCard from "../../components/ServiceCard";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { FaSearch, FaMapMarkerAlt, FaTag, FaDollarSign } from "react-icons/fa";
+import {
+  FaSearch,
+  FaMapMarkerAlt,
+  FaTag,
+  FaDollarSign,
+  FaUndo,
+  FaTimes,
+} from "react-icons/fa";
+import ServiceSkeleton from "../../components/ServiceSkeleton";
 
 const Services = () => {
   const [search, setSearch] = useState("");
@@ -75,6 +83,20 @@ const Services = () => {
     { label: "Premium ($2k+)", min: 2000, max: 100000 },
   ];
 
+  const isFiltered =
+    search !== "" ||
+    category !== "" ||
+    location !== "All" ||
+    priceRange.label !== "All";
+
+  const resetFilters = () => {
+    setSearch("");
+    setCategory("");
+    setLocation("All");
+    setPriceRange({ min: 0, max: 100000, label: "All" });
+    setCurrentPage(1);
+  };
+
   return (
     <div className="min-h-screen bg-base-100 pt-20 pb-12">
       {/* HEADER */}
@@ -90,8 +112,21 @@ const Services = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* SIDEBAR (DESKTOP) */}
-          <aside className="hidden lg:block w-64 shrink-0">
+          <aside className="hidden lg:block w-48 xl:w-60 shrink-0">
             <div className="sticky top-28 space-y-8">
+              <div className="flex items-center justify-between">
+                <h3 className="font-bold text-sm uppercase tracking-widest opacity-50">
+                  Filters
+                </h3>
+                {isFiltered && (
+                  <button
+                    onClick={resetFilters}
+                    className="text-xs flex items-center gap-1 text-error hover:underline transition-all"
+                  >
+                    <FaUndo /> Reset
+                  </button>
+                )}
+              </div>
               {/* Search */}
               <form onSubmit={handleSearch} className="relative">
                 <input
@@ -103,7 +138,7 @@ const Services = () => {
                 <FaSearch className="absolute left-3 top-3.5 text-base-content/40" />
               </form>
 
-              {/* DYNAMIC LOCATION GROUP */}
+              {/*  LOCATION  */}
               <div>
                 <h3 className="font-serif font-bold text-lg mb-3 flex items-center gap-2">
                   <FaMapMarkerAlt className="text-secondary text-sm" /> Location
@@ -201,14 +236,26 @@ const Services = () => {
 
           {/* TOP BAR (MOBILE) */}
           <div className="lg:hidden sticky top-[68px] z-30 bg-base-100/95 backdrop-blur-xl py-3 -mx-6 px-6 border-b border-base-content/5 shadow-sm space-y-3">
-            <div className="relative w-full">
-              <FaSearch className="absolute left-3 top-3.5 text-base-content/40" />
-              <input
-                type="text"
-                className="input input-bordered w-full pl-10 h-10 rounded-full bg-base-200 text-sm"
-                placeholder="Search..."
-                onChange={(e) => setSearch(e.target.value)}
-              />
+            <div className="flex gap-2">
+              <div className="relative w-full">
+                <FaSearch className="absolute left-3 top-3.5 text-base-content/40" />
+                <input
+                  type="text"
+                  className="input input-bordered w-full pl-10 h-10 rounded-full bg-base-200 text-sm"
+                  placeholder="Search..."
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
+              {/* Mobile Reset Button (Icon only) */}
+              {isFiltered && (
+                <button
+                  onClick={resetFilters}
+                  className="btn btn-square btn-ghost text-error"
+                  title="Reset Filters"
+                >
+                  <FaTimes />
+                </button>
+              )}
             </div>
 
             <div className="grid grid-cols-3 gap-2">
@@ -258,17 +305,14 @@ const Services = () => {
           {/* CONTENT GRID */}
           <div className="flex-1">
             {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div
-                    key={i}
-                    className="h-96 bg-base-200 rounded-4xl animate-pulse"
-                  ></div>
+                  <ServiceSkeleton key={i} />
                 ))}
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 min-h-[400px]">
                   {services.length > 0 ? (
                     services.map((service, idx) => (
                       <motion.div
