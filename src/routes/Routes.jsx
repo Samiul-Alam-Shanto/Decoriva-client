@@ -25,6 +25,7 @@ import DecoratorHome from "../pages/Dashboard/Decorator/DecoratorHome";
 import MyProjects from "../pages/Dashboard/Decorator/MyProjects";
 import AdminRoute from "./AdminRoute";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome";
+import AddService from "../pages/Dashboard/Admin/AddService";
 
 export const router = createBrowserRouter([
   {
@@ -134,6 +135,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AdminHome />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "add-service",
+        element: (
+          <AdminRoute>
+            <AddService />
           </AdminRoute>
         ),
       },
