@@ -26,6 +26,7 @@ import MyProjects from "../pages/Dashboard/Decorator/MyProjects";
 import AdminRoute from "./AdminRoute";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import AddService from "../pages/Dashboard/Admin/AddService";
+import ManageServices from "../pages/Dashboard/Admin/ManageServices";
 
 export const router = createBrowserRouter([
   {
@@ -143,6 +144,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AddService />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-services",
+        element: (
+          <AdminRoute>
+            <ManageServices />
           </AdminRoute>
         ),
       },
