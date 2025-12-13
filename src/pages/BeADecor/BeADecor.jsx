@@ -1,15 +1,16 @@
 import { use } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import SectionTitle from "../../components/shared/SectionTitle";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const BeADecor = () => {
   const { user } = use(AuthContext);
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
     if (!user) return toast.error("Please login to apply");
@@ -26,15 +27,10 @@ const BeADecor = () => {
     };
 
     try {
-      const token = await user.getIdToken();
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/decorator-requests`,
-        applicationData,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+      const res = await axiosSecure.post(
+        "/decorator-requests",
+        applicationData
       );
-
       if (res.data.message) {
         toast.error(res.data.message);
       } else {

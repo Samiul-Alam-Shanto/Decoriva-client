@@ -23,6 +23,8 @@ import ErrorPage from "../pages/ErrorPage";
 import DecoratorRoute from "./DecoratorRoute";
 import DecoratorHome from "../pages/Dashboard/Decorator/DecoratorHome";
 import MyProjects from "../pages/Dashboard/Decorator/MyProjects";
+import AdminRoute from "./AdminRoute";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -122,6 +124,17 @@ export const router = createBrowserRouter([
           <DecoratorRoute>
             <MyProjects />
           </DecoratorRoute>
+        ),
+      },
+
+      // Admin Paths
+      {
+        path: "admin-home",
+
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
         ),
       },
     ],
