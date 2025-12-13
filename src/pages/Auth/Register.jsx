@@ -8,6 +8,7 @@ import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { getErrorMessage, passwordValidation } from "../../utils/authHelpers";
 import img from "../../assets/hero2.png";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${
   import.meta.env.VITE_image_host
@@ -17,6 +18,7 @@ const Register = () => {
   const { createUser, updateUserProfile } = use(AuthContext);
   const location = useLocation();
   const from = location.state || "/";
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -53,14 +55,11 @@ const Register = () => {
           photo: photoURL,
         };
 
-        const dbResponse = await axios.post(
-          `${import.meta.env.VITE_API_URL}/auth/user`,
-          userInfo
-        );
+        const dbResponse = axiosSecure.post("/auth/user", userInfo);
 
         if (dbResponse.data.insertedId || dbResponse.data.message) {
           toast.success("Welcome to Decoriva!", { id: toastId });
-          navigate(from, { replace: true });
+          navigate(from);
         }
       }
     } catch (error) {

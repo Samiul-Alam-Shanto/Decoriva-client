@@ -3,11 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { FaGoogle, FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { getErrorMessage } from "../../utils/authHelpers";
 import img from "../../assets/hero3.png";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const Login = () => {
   const { signIn, googleSignIn } = use(AuthContext);
   const { register, handleSubmit } = useForm();
@@ -15,6 +15,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state || "/";
   const [showPassword, setShowPassword] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     document.title = "Decoriva | Login";
@@ -25,7 +26,7 @@ const Login = () => {
     signIn(data.email, data.password)
       .then(() => {
         toast.success("Welcome back!", { id: toastId });
-        navigate(from, { replace: true });
+        navigate(from);
       })
       .catch((error) => {
         const msg = getErrorMessage(error.code);
@@ -42,12 +43,11 @@ const Login = () => {
           name: user?.displayName,
           photo: user?.photoURL,
         };
-        axios
-          .post(`${import.meta.env.VITE_API_URL}/auth/user`, userInfo)
-          .then(() => {
-            toast.success("Welcome back!");
-            navigate(from, { replace: true });
-          });
+
+        axiosSecure.post("/auth/user", userInfo).then(() => {
+          toast.success("Welcome back!");
+          navigate(from);
+        });
       })
       .catch((error) => {
         const msg = getErrorMessage(error.code);

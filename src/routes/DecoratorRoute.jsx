@@ -17,7 +17,7 @@ const DecoratorRoute = ({ children }) => {
     return children;
   }
 
-  return <Navigate to="/" state={location.pathname} replace></Navigate>;
+  return <Navigate to="/" state={location.pathname}></Navigate>;
 };
 
 export default DecoratorRoute;
