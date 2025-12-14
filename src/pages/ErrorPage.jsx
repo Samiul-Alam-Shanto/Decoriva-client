@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const ErrorPage = () => {
   const error = useRouteError();
-  console.error(error);
+  // console.error(error);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-base-100 text-center p-6 relative overflow-hidden">

@@ -86,7 +86,7 @@ const BookingForm = () => {
         }
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       const errMsg = error.response?.data?.message || error.message;
       toast.error(`Failed: ${errMsg}`);
       setLoading(false);

@@ -41,7 +41,7 @@ const Register = () => {
       formData.append("image", data.image[0]);
 
       const res = await axios.post(image_hosting_api, formData);
-      console.log(res.data);
+      // console.log(res.data);
 
       if (res.data.success) {
         const photoURL = res.data.data.url;
@@ -55,7 +55,7 @@ const Register = () => {
           photo: photoURL,
         };
 
-        const dbResponse = axiosSecure.post("/auth/user", userInfo);
+        const dbResponse = await axiosSecure.post("/auth/user", userInfo);
 
         if (dbResponse.data.insertedId || dbResponse.data.message) {
           toast.success("Welcome to Decoriva!", { id: toastId });
@@ -63,7 +63,7 @@ const Register = () => {
         }
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       const msg = error.response
         ? "Image upload failed. Check API key."
         : getErrorMessage(error.code);

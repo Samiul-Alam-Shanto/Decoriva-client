@@ -33,7 +33,7 @@ const MyBookings = () => {
     },
   });
 
-  console.log(bookings);
+  // console.log(bookings);
   const sortedBookings = [...bookings].sort((a, b) => {
     if (sortCriteria === "date_desc")
       return new Date(b.date) - new Date(a.date);
