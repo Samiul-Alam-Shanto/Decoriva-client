@@ -129,16 +129,15 @@ VITE_appId
 VITE_STRIPE_PK
 VITE_API_URL
 VITE_image_host
-
----
+```
 
 ## 🧪 Demo Accounts
 
-| Role      | Email                                           | Password  |
-| --------- | ----------------------------------------------- | --------- |
-| Admin     | admin@gmail.com                                 | 123456Aa!
-| Decorator | decorator@gmail.com                             | 123456Aa! |
-| User      | user@gmail.com                                  | 123456Aa! |
+| Role      | Email               | Password  |
+| --------- | ------------------- | --------- |
+| Admin     | admin@gmail.com     | 123456Aa! |
+| Decorator | decorator@gmail.com | 123456Aa! |
+| User      | user@gmail.com      | 123456Aa! |
 
 ---
 
