@@ -10,7 +10,7 @@ const Stats = () => {
   ];
 
   return (
-    <div className="border-y border-base-content/5 bg-base-100 mt-10 relative z-20">
+    <div className="border-y border-base-content/5 bg-base-100  relative z-20">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0">
           {statsData.map((stat, idx) => (

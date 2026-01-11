@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { getErrorMessage } from "../../utils/authHelpers";
 import img from "../../assets/hero3.png";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import DemoCredentials from "../../components/DemoCredentials";
 const Login = () => {
   const { signIn, googleSignIn } = use(AuthContext);
   const { register, handleSubmit } = useForm();
@@ -92,6 +93,7 @@ const Login = () => {
         </Link>
 
         <div className="max-w-md w-full mx-auto">
+          <DemoCredentials />
           <div className="mb-10">
             <h1 className="text-4xl font-serif font-bold mb-2 text-base-content">
               Sign In
@@ -127,7 +129,7 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3.5 text-base-content/50 hover:text-primary"
+                  className="absolute z-20 cursor-pointer right-3 top-3.5 text-base-content/50 hover:text-primary"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>

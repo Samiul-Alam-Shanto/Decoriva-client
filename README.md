@@ -141,13 +141,16 @@ VITE_image_host
 
 ---
 
+```
 ## 📄 License
 
 MIT License
 
 ---
+```
 
 <p align="center">
   <strong>Designed & Developed By Shanto ⚜️</strong>
 </p>
+```
 ```

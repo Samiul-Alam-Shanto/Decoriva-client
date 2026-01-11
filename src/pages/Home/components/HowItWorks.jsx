@@ -42,7 +42,7 @@ const HowItWorks = () => {
               viewport={{ once: true }}
               className="relative flex flex-col items-center text-center group"
             >
-              <div className="w-24 h-24 rounded-full bg-base-100 border border-secondary/20 flex items-center justify-center text-3xl text-secondary shadow-lg z-10 group-hover:bg-secondary group-hover:text-white transition-all duration-500 group-hover:scale-110">
+              <div className="w-24 h-24 rounded-full bg-base-100 border border-secondary/20 flex items-center justify-center text-3xl text-secondary shadow-lg z-10 group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:scale-110">
                 {step.icon}
               </div>
 

@@ -7,6 +7,9 @@ import TopDecorators from "./components/TopDecorators";
 import Testimonials from "./components/Testimonials";
 import Subscription from "./components/Subscription";
 import ServiceMap from "./components/ServiceMap";
+import WhyChooseUs from "./components/WhyChooseUs";
+import FaqSection from "./components/FaqSection";
+import CtaSection from "./components/CtaSection";
 
 const Home = () => {
   useEffect(() => {
@@ -20,9 +23,12 @@ const Home = () => {
       <Stats />
       <HowItWorks />
       <TopDecorators />
+      <WhyChooseUs />
       <Testimonials />
       <Subscription />
       <ServiceMap />
+      <FaqSection />
+      <CtaSection />
     </div>
   );
 };
